@@ -60,7 +60,9 @@ authRoutes.post("/signin", async (req, res) => {
       });
     }
     res.cookie("refreshToken", refreshToken, {
-      maxAge: process.env.REFRESH_TOKEN_TTL,
+      sameSite: "None",
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
     });
     return res
